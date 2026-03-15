@@ -1,0 +1,224 @@
+/**
+ * Figma-aligned text styles + semantic HTML defaults.
+ * Tokens: src/styles/theme.css (--type-*)
+ *
+ * Usage:
+ *   <h1>…</h1>                    → Heading 01
+ *   <p class="text-body-01">…</p> → Body 01 Regular
+ *   <span class="text-label-02-semibold">…</span>
+ */
+
+/* -------------------------------------------------------------------------
+   Semantic headings (Figma: Heading 01 → h1 … Heading 04 → h4)
+   ------------------------------------------------------------------------- */
+h1,
+.h1,
+.text-heading-01 {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--type-heading-01-size);
+  line-height: var(--type-heading-01-line);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+h2,
+.h2,
+.text-heading-02 {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--type-heading-02-size);
+  line-height: var(--type-heading-02-line);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+h3,
+.h3,
+.text-heading-03 {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--type-heading-03-size);
+  line-height: var(--type-heading-03-line);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+h4,
+.h4,
+.text-heading-04 {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--type-heading-04-size);
+  line-height: var(--type-heading-04-line);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+/* Display (hero / page title) */
+.text-display-01 {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--type-display-01-size);
+  line-height: var(--type-display-01-line);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+/* -------------------------------------------------------------------------
+   Body 01–03 (Regular + Semibold)
+   ------------------------------------------------------------------------- */
+.text-body-01 {
+  font-family: var(--font-sans);
+  font-size: var(--type-body-01-size);
+  line-height: var(--type-body-01-line);
+  font-weight: var(--font-weight-normal);
+}
+
+.text-body-01-semibold {
+  font-family: var(--font-sans);
+  font-size: var(--type-body-01-size);
+  line-height: var(--type-body-01-line);
+  font-weight: var(--font-weight-semibold);
+}
+
+.text-body-02 {
+  font-family: var(--font-sans);
+  font-size: var(--type-body-02-size);
+  line-height: var(--type-body-02-line);
+  font-weight: var(--font-weight-normal);
+}
+
+.text-body-02-semibold {
+  font-family: var(--font-sans);
+  font-size: var(--type-body-02-size);
+  line-height: var(--type-body-02-line);
+  font-weight: var(--font-weight-semibold);
+}
+
+.text-body-03 {
+  font-family: var(--font-sans);
+  font-size: var(--type-body-03-size);
+  line-height: var(--type-body-03-line);
+  font-weight: var(--font-weight-normal);
+}
+
+.text-body-03-semibold {
+  font-family: var(--font-sans);
+  font-size: var(--type-body-03-size);
+  line-height: var(--type-body-03-line);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* -------------------------------------------------------------------------
+   Label 01–03 (tight line-height; Regular + Semibold)
+   ------------------------------------------------------------------------- */
+.text-label-01 {
+  font-family: var(--font-sans);
+  font-size: var(--type-label-01-size);
+  line-height: var(--type-label-01-size);
+  font-weight: var(--font-weight-normal);
+}
+
+.text-label-01-semibold {
+  font-family: var(--font-sans);
+  font-size: var(--type-label-01-size);
+  line-height: var(--type-label-01-size);
+  font-weight: var(--font-weight-semibold);
+}
+
+.text-label-02 {
+  font-family: var(--font-sans);
+  font-size: var(--type-label-02-size);
+  line-height: var(--type-label-02-size);
+  font-weight: var(--font-weight-normal);
+}
+
+.text-label-02-semibold {
+  font-family: var(--font-sans);
+  font-size: var(--type-label-02-size);
+  line-height: var(--type-label-02-size);
+  font-weight: var(--font-weight-semibold);
+}
+
+.text-label-03 {
+  font-family: var(--font-sans);
+  font-size: var(--type-label-03-size);
+  line-height: var(--type-label-03-size);
+  font-weight: var(--font-weight-normal);
+}
+
+.text-label-03-semibold {
+  font-family: var(--font-sans);
+  font-size: var(--type-label-03-size);
+  line-height: var(--type-label-03-size);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Utility = same metrics as Label (Figma separate category) */
+.text-utility-01,
+.text-utility-01-semibold {
+  font-family: var(--font-sans);
+  font-size: var(--type-label-01-size);
+  line-height: var(--type-label-01-size);
+}
+.text-utility-01 {
+  font-weight: var(--font-weight-normal);
+}
+.text-utility-01-semibold {
+  font-weight: var(--font-weight-semibold);
+}
+
+.text-utility-02,
+.text-utility-02-semibold {
+  font-family: var(--font-sans);
+  font-size: var(--type-label-02-size);
+  line-height: var(--type-label-02-size);
+}
+.text-utility-02 {
+  font-weight: var(--font-weight-normal);
+}
+.text-utility-02-semibold {
+  font-weight: var(--font-weight-semibold);
+}
+
+.text-utility-03,
+.text-utility-03-semibold {
+  font-family: var(--font-sans);
+  font-size: var(--type-label-03-size);
+  line-height: var(--type-label-03-size);
+}
+.text-utility-03 {
+  font-weight: var(--font-weight-normal);
+}
+.text-utility-03-semibold {
+  font-weight: var(--font-weight-semibold);
+}
+
+/* -------------------------------------------------------------------------
+   Link 01 (Figma: 16/16; use on <a> or span)
+   ------------------------------------------------------------------------- */
+.text-link-01 {
+  font-family: var(--font-sans);
+  font-size: var(--type-label-01-size);
+  line-height: var(--type-label-01-size);
+  font-weight: var(--font-weight-normal);
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.text-link-01-semibold {
+  font-family: var(--font-sans);
+  font-size: var(--type-label-01-size);
+  line-height: var(--type-label-01-size);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.text-link-01:hover,
+.text-link-01-semibold:hover {
+  color: var(--color-primary-hover);
+}

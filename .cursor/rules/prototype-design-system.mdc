@@ -1,0 +1,14 @@
+---
+description: Use brand theme and base components so the prototype stays consistent with the current product.
+globs: 
+  - "src/**/*.tsx"
+  - "src/**/*.css"
+---
+
+# Prototype design system
+
+- **Brand colors and fonts:** Use CSS variables from `src/styles/theme.css` (e.g. `var(--color-primary)`, `var(--font-sans)`). Do not introduce one-off hex colors or font families in components.
+- **Base components:** Use the shared components for common UI: `Button`, `Input`, `Card`, `NavTabs` from `src/components`. Use them for buttons, form fields, cards, and account section navigation instead of creating new one-off components.
+- **Header and footer:** Keep `Header` and `Footer` in `src/components` consistent with the current product shell; link targets and layout should stay recognizable (logo, main nav, utility links, footer links).
+- **Mobile-first:** Write styles for small viewports first; use media queries for 768px and 1024px breakpoints. Ensure tap targets are at least 44px (use `var(--tap-min-height)`).
+- **Form inputs on mobile:** Use the `Input` component with the appropriate `type` and `inputmode` (e.g. `type="email"`, `type="tel"`, `inputMode="numeric"`) so mobile keyboards behave correctly.

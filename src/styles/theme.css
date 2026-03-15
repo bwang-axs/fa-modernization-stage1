@@ -1,0 +1,107 @@
+/**
+ * Brand theme – colors and fonts for prototype consistency.
+ * Use these variables everywhere; avoid one-off colors or font declarations.
+ */
+
+:root {
+  /* Brand colors – primary, secondary, neutrals */
+  --color-primary: #0059D6;
+  --color-primary-hover: #0050c1;
+  --color-secondary: #6b7280;
+  --color-secondary-hover: #4b5563;
+
+  /* Text */
+  --color-text-primary: #111827;
+  --color-text-secondary: #6b7280;
+  --color-text-inverse: #ffffff;
+
+  /* Backgrounds */
+  --color-bg-page: #f9fafb;
+  --color-bg-surface: #ffffff;
+  --color-bg-muted: #f3f4f6;
+
+  /* Borders */
+  --color-border: #e5e7eb;
+  --color-border-strong: #d1d5db;
+
+  /* Semantic */
+  --color-success: #059669;
+  --color-error: #dc2626;
+  --color-warning: #d97706;
+
+  /* Typography – Euclid first; system stack fallback (edit in fonts.css for @font-face) */
+  --font-sans: "Euclid Circular B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Monaco, monospace;
+
+  /* Type scale – edit rem values to tune the system */
+  --text-xs: 0.75rem; /* 12px at 16px root */
+  --text-sm: 0.875rem; /* 14px */
+  --text-base: 1rem; /* 16px – body default */
+  --text-lg: 1.125rem; /* 18px */
+  --text-xl: 1.25rem; /* 20px */
+  --text-2xl: 1.5rem; /* 24px */
+  --text-3xl: 1.875rem; /* 30px – optional display */
+  --text-4xl: 2.25rem; /* 36px */
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --line-tight: 1.25;
+  --line-snug: 1.375;
+  --line-normal: 1.5;
+  --line-relaxed: 1.625;
+
+  /*
+   * Figma text styles (Global → Text styles)
+   * Edit sizes/line-heights here; classes in typography.css follow these.
+   */
+  /* Display */
+  --type-display-01-size: 2rem; /* 32px */
+  --type-display-01-line: 2.625rem; /* 42px */
+  /* Heading 01–04 (maps to h1–h4) */
+  --type-heading-01-size: 1.5rem; /* 24px */
+  --type-heading-01-line: 1.9375rem; /* 31px */
+  --type-heading-02-size: 1.25rem; /* 20px */
+  --type-heading-02-line: 1.625rem; /* 26px */
+  --type-heading-03-size: 1rem; /* 16px */
+  --type-heading-03-line: 1.5rem; /* 24px */
+  --type-heading-04-size: 0.875rem; /* 14px */
+  --type-heading-04-line: 1.3125rem; /* 21px */
+  /* Body 01–03 */
+  --type-body-01-size: 1rem;
+  --type-body-01-line: 1.5rem; /* 24px */
+  --type-body-02-size: 0.875rem; /* 14px */
+  --type-body-02-line: 1.3125rem; /* 21px */
+  --type-body-03-size: 0.75rem; /* 12px */
+  --type-body-03-line: 1.125rem; /* 18px */
+  /* Label / Utility / tight line (size = line) */
+  --type-label-01-size: 1rem; /* 16px / 16px */
+  --type-label-02-size: 0.875rem; /* 14px / 14px */
+  --type-label-03-size: 0.75rem; /* 12px / 12px */
+
+  /* Spacing – for consistency */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+
+  /* Layout */
+  --container-max: 1200px;
+  --header-height: 56px;
+  --tap-min-height: 44px;
+}
+
+/* 6-month variant overrides – applied when data-variant="future" */
+[data-variant="future"] {
+  --color-primary: #0550ae;
+  --color-primary-hover: #0349a0;
+  --color-bg-page: #f6f8fa;
+  --color-bg-surface: #ffffff;
+}

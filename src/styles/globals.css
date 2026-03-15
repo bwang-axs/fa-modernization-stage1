@@ -1,0 +1,55 @@
+/**
+ * Global styles – mobile-first base.
+ * Import theme.css for brand variables.
+ */
+
+@import "./fonts.css";
+@import "./theme.css";
+@import "./typography.css";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--type-body-01-size);
+  line-height: var(--type-body-01-line);
+  font-weight: var(--font-weight-normal);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-page);
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Touch targets – minimum 44px for tap areas */
+button,
+a[role="button"],
+input[type="submit"],
+input[type="button"],
+[data-tap-target] {
+  min-height: var(--tap-min-height);
+  min-width: var(--tap-min-height);
+}
+
+/* Focus visible for accessibility */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}

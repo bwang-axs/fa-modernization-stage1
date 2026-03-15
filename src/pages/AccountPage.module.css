@@ -1,0 +1,30 @@
+.pageTitle {
+  margin: 0;
+  font-size: var(--text-2xl);
+  margin-bottom: var(--space-4);
+}
+
+.pageIntro {
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-6);
+}
+
+.card {
+  margin-bottom: var(--space-6);
+}
+
+.card:last-child {
+  margin-bottom: 0;
+}
+
+.cardTitle {
+  margin: 0 0 var(--space-4);
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}

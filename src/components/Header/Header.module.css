@@ -1,0 +1,63 @@
+/* Header: logo left, signed-in user avatar right – mobile-first breakpoints */
+
+.header {
+  height: var(--header-height);
+  background-color: var(--color-bg-surface);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  min-height: var(--tap-min-height);
+  text-decoration: none;
+}
+
+.logoImg {
+  height: 28px;
+  width: auto;
+}
+
+.userSlot {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+/* Tablet: 768px */
+@media (min-width: 768px) {
+  .inner {
+    padding: 0 24px;
+  }
+
+  .logoImg {
+    height: 30px;
+  }
+}
+
+/* Desktop: 1024px – match Figma */
+@media (min-width: 1024px) {
+  .inner {
+    padding: 0 40px;
+    gap: var(--space-6);
+  }
+
+  .logoImg {
+    height: 32px;
+  }
+}
