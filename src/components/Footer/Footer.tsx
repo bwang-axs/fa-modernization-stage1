@@ -4,7 +4,7 @@ import styles from './Footer.module.css'
 
 export function Footer() {
   const variant = useVariant()
-  const base = variant === 'current' ? '/current' : '/future'
+  const base = variant === 'current' ? '/current' : variant === 'new' ? '/new' : '/future'
 
   return (
     <footer className={styles.footer} role="contentinfo">

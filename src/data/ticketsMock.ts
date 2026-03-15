@@ -41,6 +41,10 @@ export const upcomingEvents: EventWithTickets[] = [
   },
 ]
 
+export function getEventById(id: string): EventWithTickets | undefined {
+  return [...upcomingEvents, ...pastEvents].find((e) => e.id === id)
+}
+
 export const pastEvents: EventWithTickets[] = [
   {
     id: '3',

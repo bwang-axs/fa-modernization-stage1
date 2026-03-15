@@ -6,8 +6,7 @@ export function AppDownloadBanner() {
       <div className={styles.inner}>
         <div className={styles.copy}>
           <p className={styles.tagline}>Your tickets, always in your pocket</p>
-          <h2 className={styles.headline}>Get the app</h2>
-          <p className={styles.cta}>Scan the code to download — free on the App Store & Google Play</p>
+          <p className={styles.cta}>Free on the App Store & Google Play</p>
         </div>
         <div className={styles.codeWrap} aria-hidden>
           <div className={styles.qrCode}>
@@ -44,7 +43,9 @@ export function AppDownloadBanner() {
               </g>
             </svg>
           </div>
-          <span className={styles.scanLabel}>Scan to download</span>
+          <button type="button" className={styles.getAppBtn}>
+            Get the app
+          </button>
         </div>
       </div>
     </div>

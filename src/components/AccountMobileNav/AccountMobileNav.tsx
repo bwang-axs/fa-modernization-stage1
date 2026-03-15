@@ -1,11 +1,11 @@
 import { Link, useLocation } from 'react-router-dom'
-import { useVariant } from '../../context/VariantContext'
-import styles from './NavTabs.module.css'
+import styles from './AccountMobileNav.module.css'
 
 const tabs = [
-  { path: 'tickets', label: 'Tickets', icon: TicketIcon },
-  { path: 'listings', label: 'Listings', icon: ListIcon },
-  { path: 'account', label: 'Account', icon: AccountIcon },
+  { path: '/current/tickets', label: 'Tickets', icon: TicketIcon },
+  { path: '/current/offers', label: 'Offers', icon: OffersIcon },
+  { path: '/current/account', label: 'Account', icon: AccountIcon },
+  { path: '/current/more', label: 'More', icon: MoreIcon },
 ] as const
 
 function TicketIcon({ className }: { className?: string }) {
@@ -19,15 +19,10 @@ function TicketIcon({ className }: { className?: string }) {
   )
 }
 
-function ListIcon({ className }: { className?: string }) {
+function OffersIcon({ className }: { className?: string }) {
   return (
     <svg className={className} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-      <path d="M8 6h13" />
-      <path d="M8 12h13" />
-      <path d="M8 18h13" />
-      <path d="M3 6h.01" />
-      <path d="M3 12h.01" />
-      <path d="M3 18h.01" />
+      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
     </svg>
   )
 }
@@ -41,24 +36,31 @@ function AccountIcon({ className }: { className?: string }) {
   )
 }
 
-export function NavTabs() {
+function MoreIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <line x1="3" y1="12" x2="21" y2="12" />
+      <line x1="3" y1="6" x2="21" y2="6" />
+      <line x1="3" y1="18" x2="21" y2="18" />
+    </svg>
+  )
+}
+
+export function AccountMobileNav() {
   const location = useLocation()
-  const variant = useVariant()
-  const base = variant === 'current' ? '/current' : variant === 'new' ? '/new' : '/future'
 
   return (
-    <nav className={styles.nav} aria-label="Main navigation">
+    <nav className={styles.nav} aria-label="Account navigation">
       <ul className={styles.list}>
         {tabs.map(({ path, label, icon: Icon }) => {
-          const to = `${base}/${path}`
           const isActive =
-            path === 'account'
-              ? location.pathname === to || location.pathname.startsWith(`${to}/`)
-              : location.pathname === to
+            path === location.pathname ||
+            (path !== '/current/more' && location.pathname.startsWith(path)) ||
+            (path === '/current/more' && (location.pathname === '/current/more' || location.pathname.startsWith('/current/orders') || location.pathname.startsWith('/current/history')))
           return (
             <li key={path}>
               <Link
-                to={to}
+                to={path}
                 className={`${styles.tab} ${isActive ? styles.active : ''}`.trim()}
                 aria-current={isActive ? 'page' : undefined}
               >

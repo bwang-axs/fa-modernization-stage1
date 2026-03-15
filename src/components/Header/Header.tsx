@@ -5,7 +5,7 @@ import styles from './Header.module.css'
 
 export function Header() {
   const variant = useVariant()
-  const base = variant === 'current' ? '/current' : '/future'
+  const base = variant === 'current' ? '/current' : variant === 'new' ? '/new' : '/future'
 
   return (
     <header className={styles.header} role="banner">

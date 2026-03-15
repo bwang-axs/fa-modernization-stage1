@@ -1,3 +1,12 @@
+/* Current variant: main page title */
+.pageTitle {
+  margin: 0 0 var(--space-4);
+  font-size: var(--type-heading-01-size);
+  line-height: var(--type-heading-01-line);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
 .section {
   width: 100%;
   margin-bottom: var(--space-10);
@@ -72,6 +81,23 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-6);
+}
+
+.eventListOld {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.eventListItemOld {
+  list-style: none;
+}
+
+.eventCardWrapOld {
+  max-width: 100%;
 }
 
 .eventCard {
@@ -206,4 +232,243 @@
 
 .viewTicketsBtn {
   margin-top: 0;
+}
+
+/* --- Current variant: ticket status tab bar --- */
+.ticketTabs {
+  margin: 0 0 var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.ticketTabsList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  row-gap: 0;
+}
+
+.ticketTab {
+  padding: var(--space-3) var(--space-2);
+  margin-bottom: -1px;
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  font-family: var(--font-sans);
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.ticketTab:hover {
+  color: var(--color-text-primary);
+}
+
+.ticketTab.active {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+/* --- Current variant: search bar --- */
+.searchBarWrap {
+  position: relative;
+  width: 100%;
+  margin-bottom: var(--space-6);
+}
+
+.searchBarInput {
+  width: 100%;
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  padding: var(--space-3) var(--space-4) var(--space-3) var(--space-4);
+  padding-right: calc(var(--space-4) + 24px + var(--space-2));
+  min-height: var(--tap-min-height);
+  border: 1px solid var(--color-border);
+  border-radius: 9999px;
+  background-color: var(--color-bg-muted);
+  color: var(--color-text-primary);
+  box-sizing: border-box;
+}
+
+.searchBarInput::placeholder {
+  color: var(--color-text-secondary);
+}
+
+.searchBarInput:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background-color: var(--color-bg-surface);
+}
+
+.searchBarIcon {
+  position: absolute;
+  right: var(--space-4);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  color: var(--color-primary);
+  pointer-events: none;
+}
+
+/* --- Current variant: section subtitle (Upcoming Tickets + Viewing X of X) --- */
+.sectionSubtitleRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.sectionSubtitleTitle {
+  margin: 0;
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.sectionSubtitleMeta {
+  margin: 0;
+  font-size: var(--text-sm);
+  font-weight: 400;
+  color: var(--color-text-secondary);
+}
+
+/* --- Event card variant "old" (split dark/light layout) --- */
+.eventCardOld {
+  display: flex;
+  min-height: 120px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+}
+
+.eventCardOldBrand {
+  width: 28%;
+  min-width: 100px;
+  max-width: 140px;
+  background: #1a1a1a;
+  color: #c9a962;
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+
+.eventCardOldBrandIcon {
+  width: 32px;
+  height: 32px;
+  color: #c9a962;
+  flex-shrink: 0;
+}
+
+.eventCardOldBrandName {
+  font-size: var(--text-xs);
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.eventCardOldBrandTier {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  text-align: center;
+  margin: 0;
+}
+
+.eventCardOldBody {
+  flex: 1;
+  min-width: 0;
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-1);
+  background: var(--color-bg-muted);
+}
+
+.eventCardOldDate {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.eventCardOldDateTime {
+  font-size: var(--text-sm);
+  font-weight: 400;
+  color: var(--color-text-secondary);
+}
+
+.eventCardOldTitle {
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.eventCardOldVenue {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.eventCardOldRight {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.eventCardOldBodyRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.eventCardOldBodyLeft {
+  flex: 1;
+  min-width: 0;
+}
+
+.eventCardOldTicketBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 32px;
+  padding: 0 var(--space-2);
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  border-radius: 6px 0 0 6px;
+  border: none;
+}
+
+.eventCardOldChevron {
+  width: 20px;
+  height: 20px;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+.eventCardOldLink {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex: 1;
+  min-width: 0;
 }

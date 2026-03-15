@@ -1,6 +1,6 @@
 import { createContext, useContext, useMemo, type ReactNode } from 'react'
 
-export type Variant = 'current' | 'future'
+export type Variant = 'current' | 'new' | 'future'
 
 const VariantContext = createContext<Variant>('current')
 
