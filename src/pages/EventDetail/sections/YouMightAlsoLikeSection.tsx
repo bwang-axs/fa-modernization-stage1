@@ -9,7 +9,14 @@ interface YouMightAlsoLikeSectionProps {
 export function YouMightAlsoLikeSection({ events }: YouMightAlsoLikeSectionProps) {
   const location = useLocation()
   const path = location.pathname
-  const base = path.startsWith('/future') ? '/future' : path.startsWith('/new') ? '/new' : '/current'
+  const base = path.startsWith('/future')
+    ? '/future'
+    : path.startsWith('/new')
+      ? '/new'
+      : path.startsWith('/currentV2')
+        ? '/currentV2'
+        : '/current'
+  const eventsPath = base === '/currentV2' ? 'events' : 'tickets'
 
   return (
     <section className={styles.section} aria-labelledby="recommendations-heading">
@@ -24,7 +31,7 @@ export function YouMightAlsoLikeSection({ events }: YouMightAlsoLikeSectionProps
         {events.map((event) => (
           <Link
             key={event.id}
-            to={`${base}/tickets/${event.id}`}
+            to={`${base}/${eventsPath}/${event.id}`}
             className={styles.card}
             role="listitem"
           >

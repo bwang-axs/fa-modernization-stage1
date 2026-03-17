@@ -7,17 +7,21 @@ import styles from './Layout.module.css'
 /**
  * Layout for the Event Detail page: top nav (Header + banner) only.
  * No nav tabs (Tickets/Listings/Accounts) and no main app footer.
- * "current" variant: no app banner in header.
+ * "current" variant: no header (parent CurrentAccountLayout already has it), no app banner.
  */
 export function EventDetailLayout() {
   const variant = useVariant()
-  const showBanner = variant !== 'current'
+  const isEmbeddedVariant = variant === 'current' || variant === 'currentV2'
+  const showHeader = !isEmbeddedVariant
+  const showBanner = !isEmbeddedVariant
+
+  const mainClass = isEmbeddedVariant ? `${styles.main} ${styles.mainEmbedded}` : styles.main
 
   return (
     <div className={styles.layout}>
-      <Header />
+      {showHeader && <Header />}
       {showBanner && <AppDownloadBanner />}
-      <main className={styles.main} id="main-content">
+      <main className={mainClass} id="main-content">
         <Outlet />
       </main>
     </div>

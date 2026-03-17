@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import styles from './CurrentAccountSideNav.module.css'
 
-const items = [
+const defaultItems = [
   { path: 'tickets', label: 'Your Tickets', icon: TicketIcon },
   { path: 'orders', label: 'Orders', icon: OrdersIcon },
   { path: 'history', label: 'History', icon: HistoryIcon },
@@ -58,8 +58,18 @@ function AccountIcon({ className }: { className?: string }) {
   )
 }
 
-export function CurrentAccountSideNav() {
-  const accountBase = '/current'
+export function CurrentAccountSideNav({ basePath = '/current' }: { basePath?: string }) {
+  const accountBase = basePath
+  const items =
+    basePath === '/currentV2'
+      ? ([
+          { path: 'events', label: 'Events', icon: TicketIcon },
+          { path: 'listings', label: 'Listings', icon: OrdersIcon },
+          { path: 'order-history', label: 'Order history', icon: HistoryIcon },
+          { path: 'offers', label: 'Offers', icon: OffersIcon },
+          { path: 'account', label: 'Account', icon: AccountIcon },
+        ] as const)
+      : defaultItems
 
   return (
     <nav className={styles.nav} aria-label="Account navigation">
@@ -69,7 +79,7 @@ export function CurrentAccountSideNav() {
             <NavLink
               to={path === 'account' ? `${accountBase}/account` : `${accountBase}/${path}`}
               className={({ isActive }) => `${styles.link} ${isActive ? styles.active : ''}`.trim()}
-              end={path === 'tickets'}
+              end={path === 'tickets' || path === 'events'}
             >
               <span className={styles.icon} aria-hidden>
                 <Icon />

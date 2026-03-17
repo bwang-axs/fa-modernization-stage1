@@ -5,10 +5,13 @@ import { CurrentAccountLayout } from './components/Layout/CurrentAccountLayout'
 import { EventDetailLayout } from './components/Layout/EventDetailLayout'
 import { TicketsPage } from './pages/TicketsPage'
 import { ListingsPage } from './pages/ListingsPage'
+import { EventsV2Page } from './pages/EventsV2Page'
+import { ListingsV2Page } from './pages/ListingsV2Page'
 import { AccountLayout } from './pages/Account/AccountLayout'
 import { ProfilePage } from './pages/Account/ProfilePage'
 import { OrdersPage } from './pages/Account/OrdersPage'
 import { HistoryPage } from './pages/Account/HistoryPage'
+import { OrderHistoryV2Page } from './pages/Account/OrderHistoryV2Page'
 import { SettingsPage } from './pages/Account/SettingsPage'
 import { HelpCenterPage } from './pages/Account/HelpCenterPage'
 import { OffersPage } from './pages/Account/OffersPage'
@@ -16,6 +19,7 @@ import { MorePage } from './pages/Account/MorePage'
 import { SellLandingWrapper } from './landing/SellLandingWrapper'
 import { SellLandingPage } from './landing/SellLandingPage'
 import { EventDetailPage } from './pages/EventDetail/EventDetailPage'
+import { TicketsUpgradesPage } from './pages/TicketsUpgradesPage'
 
 function App() {
   return (
@@ -29,6 +33,7 @@ function App() {
         <Route element={<CurrentAccountLayout />}>
           <Route index element={<Navigate to="tickets" replace />} />
           <Route path="tickets" element={<TicketsPage />} />
+          <Route path="tickets-upgrades" element={<TicketsUpgradesPage />} />
           <Route path="tickets/:eventId" element={<EventDetailLayout />}>
             <Route index element={<EventDetailPage />} />
           </Route>
@@ -57,6 +62,27 @@ function App() {
             <Route index element={<Navigate to="profile" replace />} />
             <Route path="orders" element={<OrdersPage />} />
             <Route path="history" element={<HistoryPage />} />
+            <Route path="profile" element={<ProfilePage />} />
+            <Route path="settings" element={<SettingsPage />} />
+            <Route path="help" element={<HelpCenterPage />} />
+          </Route>
+        </Route>
+      </Route>
+      {/* Current V2 variant: duplicate of current IA under /currentV2 */}
+      <Route path="/currentV2" element={<VariantRoute variant="currentV2" />}>
+        <Route element={<CurrentAccountLayout basePath="/currentV2" />}>
+          <Route index element={<Navigate to="events" replace />} />
+          <Route path="events" element={<EventsV2Page />} />
+          <Route path="events/:eventId" element={<EventDetailLayout />}>
+            <Route index element={<EventDetailPage />} />
+          </Route>
+          <Route path="listings" element={<ListingsV2Page />} />
+          <Route path="events-upgrades" element={<TicketsUpgradesPage />} />
+          <Route path="order-history" element={<OrderHistoryV2Page />} />
+          <Route path="offers" element={<OffersPage />} />
+          <Route path="more" element={<MorePage />} />
+          <Route path="account" element={<Outlet />}>
+            <Route index element={<Navigate to="profile" replace />} />
             <Route path="profile" element={<ProfilePage />} />
             <Route path="settings" element={<SettingsPage />} />
             <Route path="help" element={<HelpCenterPage />} />

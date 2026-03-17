@@ -12,3 +12,8 @@
   margin: 0 auto;
   padding: 40px;
 }
+
+/* When event detail is embedded (e.g. current variant inside CurrentAccountLayout), no top padding so Back aligns with left nav */
+.mainEmbedded {
+  padding-top: 0;
+}

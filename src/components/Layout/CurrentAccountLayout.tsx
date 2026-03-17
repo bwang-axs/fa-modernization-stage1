@@ -6,21 +6,21 @@ import { AccountMobileNav } from '../AccountMobileNav/AccountMobileNav'
 import styles from './CurrentAccountLayout.module.css'
 
 /**
- * Layout for the "current" variant: header (no app banner), left nav on desktop,
+ * Layout for the "current" variants: header (no app banner), left nav on desktop,
  * main content, footer; on mobile, bottom nav instead of left nav.
  */
-export function CurrentAccountLayout() {
+export function CurrentAccountLayout({ basePath = '/current' }: { basePath?: string }) {
   return (
     <div className={styles.layout}>
       <Header />
       <main className={styles.main} id="main-content">
-        <CurrentAccountSideNav />
+        <CurrentAccountSideNav basePath={basePath} />
         <div className={styles.content}>
           <Outlet />
         </div>
       </main>
       <Footer />
-      <AccountMobileNav />
+      <AccountMobileNav basePath={basePath} />
     </div>
   )
 }

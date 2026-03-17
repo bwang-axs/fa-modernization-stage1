@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useVariant } from '../context/VariantContext'
 import { Card } from '../components/Card/Card'
+import { Button } from '../components/Button/Button'
 import { upcomingEvents, pastEvents, type EventWithTickets, type Ticket } from '../data/ticketsMock'
 import buttonStyles from '../components/Button/Button.module.css'
 import styles from './TicketsPage.module.css'
@@ -115,6 +116,11 @@ function EventCardOld({ event }: { event: EventWithTickets }) {
               <ChevronDownIcon className={styles.eventCardOldChevron} aria-hidden />
             </div>
           </div>
+          <div className={styles.eventCardOldActions}>
+            <Button variant="secondary" className={styles.eventCardOldSellButton}>
+              Sell
+            </Button>
+          </div>
         </div>
       </Link>
     </article>
@@ -164,7 +170,8 @@ function TimelineSection({
 
 export function TicketsPage() {
   const variant = useVariant()
-  const isCurrentVariant = variant === 'current'
+  const isCurrentVariant = variant === 'current' || variant === 'currentV2'
+  const isCurrentV2 = variant === 'currentV2'
   const [activeTicketTab, setActiveTicketTab] = useState<string>(TICKET_STATUS_TABS[0])
   const [searchQuery, setSearchQuery] = useState('')
 
@@ -172,35 +179,47 @@ export function TicketsPage() {
     <>
       {isCurrentVariant && (
         <>
-          <h1 className={styles.pageTitle} id="your-tickets-heading">
-            Your Tickets
+          <h1
+            className={`${styles.pageTitle} ${isCurrentV2 ? styles.pageTitleNeutral : ''}`.trim()}
+            id="your-tickets-heading"
+          >
+            {isCurrentV2 ? 'Events' : 'Your Tickets'}
           </h1>
-          <nav className={styles.ticketTabs} aria-label="Ticket status">
-            <ul className={styles.ticketTabsList}>
-              {TICKET_STATUS_TABS.map((tab) => (
-                <li key={tab}>
-                  <button
-                    type="button"
-                    className={`${styles.ticketTab} ${activeTicketTab === tab ? styles.active : ''}`.trim()}
-                    onClick={() => setActiveTicketTab(tab)}
-                    aria-current={activeTicketTab === tab ? 'page' : undefined}
-                  >
-                    {tab}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <div className={styles.searchBarWrap}>
-            <input
-              type="search"
-              className={styles.searchBarInput}
-              placeholder="Search"
-              aria-label="Search tickets"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <SearchIcon className={styles.searchBarIcon} />
+          {!isCurrentV2 && (
+            <nav className={styles.ticketTabs} aria-label="Ticket status">
+              <ul className={styles.ticketTabsList}>
+                {TICKET_STATUS_TABS.map((tab) => (
+                  <li key={tab}>
+                    <button
+                      type="button"
+                      className={`${styles.ticketTab} ${activeTicketTab === tab ? styles.active : ''}`.trim()}
+                      onClick={() => setActiveTicketTab(tab)}
+                      aria-current={activeTicketTab === tab ? 'page' : undefined}
+                    >
+                      {tab}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          )}
+          {isCurrentV2 && (
+            <div className={styles.searchBarActions}>
+              <Button variant="secondary">Transfer</Button>
+            </div>
+          )}
+          <div className={styles.searchBarRow}>
+            <div className={styles.searchBarWrap}>
+              <input
+                type="search"
+                className={styles.searchBarInput}
+                placeholder="Search"
+                aria-label="Search tickets"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <SearchIcon className={styles.searchBarIcon} />
+            </div>
           </div>
           {activeTicketTab === 'Upcoming' && (
             <section className={styles.section} aria-labelledby="upcoming-tickets-heading">

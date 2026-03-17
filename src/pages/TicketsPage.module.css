@@ -7,9 +7,13 @@
   color: var(--color-primary);
 }
 
+.pageTitleNeutral {
+  color: var(--color-text-primary);
+}
+
 .section {
   width: 100%;
-  margin-bottom: var(--space-10);
+  margin-bottom: var(--space-8);
 }
 
 .sectionTitle {
@@ -273,11 +277,17 @@
   border-bottom-color: var(--color-primary);
 }
 
-/* --- Current variant: search bar --- */
+/* --- Current variant: search bar + transfer button --- */
+.searchBarRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
 .searchBarWrap {
   position: relative;
   width: 100%;
-  margin-bottom: var(--space-6);
 }
 
 .searchBarInput {
@@ -313,6 +323,17 @@
   height: 24px;
   color: var(--color-primary);
   pointer-events: none;
+}
+
+.searchBarActions {
+  display: flex;
+  justify-content: flex-start;
+}
+
+@media (min-width: 768px) {
+  .searchBarActions {
+    flex-shrink: 0;
+  }
 }
 
 /* --- Current variant: section subtitle (Upcoming Tickets + Viewing X of X) --- */
@@ -429,6 +450,16 @@
   gap: var(--space-2);
   flex-shrink: 0;
   margin-left: auto;
+}
+
+.eventCardOldActions {
+  margin-top: var(--space-3);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.eventCardOldSellButton {
+  min-width: 120px;
 }
 
 .eventCardOldBodyRow {

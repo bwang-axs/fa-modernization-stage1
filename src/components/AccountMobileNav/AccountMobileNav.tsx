@@ -1,12 +1,20 @@
 import { Link, useLocation } from 'react-router-dom'
 import styles from './AccountMobileNav.module.css'
 
-const tabs = [
-  { path: '/current/tickets', label: 'Tickets', icon: TicketIcon },
-  { path: '/current/offers', label: 'Offers', icon: OffersIcon },
-  { path: '/current/account', label: 'Account', icon: AccountIcon },
-  { path: '/current/more', label: 'More', icon: MoreIcon },
-] as const
+const makeTabs = (basePath: string) =>
+  basePath === '/currentV2'
+    ? ([
+        { path: `${basePath}/events`, label: 'Events', icon: TicketIcon },
+        { path: `${basePath}/offers`, label: 'Offers', icon: OffersIcon },
+        { path: `${basePath}/account`, label: 'Account', icon: AccountIcon },
+        { path: `${basePath}/more`, label: 'More', icon: MoreIcon },
+      ] as const)
+    : ([
+        { path: `${basePath}/tickets`, label: 'Tickets', icon: TicketIcon },
+        { path: `${basePath}/offers`, label: 'Offers', icon: OffersIcon },
+        { path: `${basePath}/account`, label: 'Account', icon: AccountIcon },
+        { path: `${basePath}/more`, label: 'More', icon: MoreIcon },
+      ] as const)
 
 function TicketIcon({ className }: { className?: string }) {
   return (
@@ -46,8 +54,9 @@ function MoreIcon({ className }: { className?: string }) {
   )
 }
 
-export function AccountMobileNav() {
+export function AccountMobileNav({ basePath = '/current' }: { basePath?: string }) {
   const location = useLocation()
+  const tabs = makeTabs(basePath)
 
   return (
     <nav className={styles.nav} aria-label="Account navigation">
@@ -55,8 +64,16 @@ export function AccountMobileNav() {
         {tabs.map(({ path, label, icon: Icon }) => {
           const isActive =
             path === location.pathname ||
-            (path !== '/current/more' && location.pathname.startsWith(path)) ||
-            (path === '/current/more' && (location.pathname === '/current/more' || location.pathname.startsWith('/current/orders') || location.pathname.startsWith('/current/history')))
+            (path === `${basePath}/events` &&
+              (location.pathname === path || location.pathname.startsWith(`${basePath}/events/`))) ||
+            (path !== `${basePath}/more` &&
+              path !== `${basePath}/events` &&
+              location.pathname.startsWith(path)) ||
+            (path === `${basePath}/more` &&
+              (location.pathname === `${basePath}/more` ||
+                location.pathname.startsWith(`${basePath}/orders`) ||
+                location.pathname.startsWith(`${basePath}/history`) ||
+                location.pathname.startsWith(`${basePath}/order-history`)))
           return (
             <li key={path}>
               <Link

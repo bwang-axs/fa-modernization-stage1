@@ -22,3 +22,8 @@
     padding: var(--space-8);
   }
 }
+
+/* When embedded in current variant layout: no top padding so Back aligns with left nav */
+.containerTopAligned {
+  padding-top: 0;
+}
