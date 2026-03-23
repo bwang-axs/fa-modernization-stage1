@@ -3,7 +3,6 @@ import styles from './UpgradesModal.module.css'
 
 type UpgradeSeat = {
   id: string
-  label: string
   section: string
   currentRow: number
   upgradedRow: number
@@ -13,10 +12,56 @@ type UpgradeSeat = {
   tag?: 'best-value' | 'popular'
 }
 
+function formatSeatRange(seats: number[]): string {
+  if (seats.length === 0) return '—'
+  const sorted = [...seats].sort((a, b) => a - b)
+  const min = sorted[0]
+  const max = sorted[sorted.length - 1]
+  if (min === max) return String(min)
+  const contiguous = sorted.every((n, i) => (i === 0 ? true : n === sorted[i - 1] + 1))
+  return contiguous ? `${min}–${max}` : sorted.join(', ')
+}
+
+function upgradeOptionAriaLabel(opt: UpgradeSeat): string {
+  return `Upgrade option: Section ${opt.section}, row ${opt.currentRow} to row ${opt.upgradedRow}, seats ${formatSeatRange(opt.seats)}`
+}
+
+function SeatLocationSummary({
+  section,
+  currentRow,
+  upgradedRow,
+  seats,
+  compact,
+}: {
+  section: string
+  currentRow: number
+  upgradedRow: number
+  seats: number[]
+  compact?: boolean
+}) {
+  return (
+    <div className={compact ? styles.seatLocationCompact : styles.seatLocation}>
+      <span className={styles.seatLocationCaption}>Section / Row / Seats</span>
+      <div className={styles.seatLocationValues}>
+        <span className={styles.seatLocationCell}>{section}</span>
+        <span className={styles.seatLocationCell}>
+          <span className={styles.seatLocationRowMove}>
+            <span className={styles.seatLocationRowNum}>{currentRow}</span>
+            <span className={styles.seatLocationArrow} aria-hidden>
+              →
+            </span>
+            <span className={styles.seatLocationRowNum}>{upgradedRow}</span>
+          </span>
+        </span>
+        <span className={styles.seatLocationCell}>{formatSeatRange(seats)}</span>
+      </div>
+    </div>
+  )
+}
+
 const UPGRADE_OPTIONS: UpgradeSeat[] = [
   {
     id: 'opt-1',
-    label: 'Section 103 · Row 5 · Seats 1–3',
     section: '103',
     currentRow: 5,
     upgradedRow: 3,
@@ -27,7 +72,6 @@ const UPGRADE_OPTIONS: UpgradeSeat[] = [
   },
   {
     id: 'opt-2',
-    label: 'Section 112 · Row 8 · Seats 10–12',
     section: '112',
     currentRow: 8,
     upgradedRow: 6,
@@ -38,7 +82,6 @@ const UPGRADE_OPTIONS: UpgradeSeat[] = [
   },
   {
     id: 'opt-3',
-    label: 'Section 121 · Row 10 · Seats 4–6',
     section: '121',
     currentRow: 10,
     upgradedRow: 8,
@@ -105,10 +148,16 @@ export function UpgradesModal({ onClose, onConfirm }: UpgradesModalProps) {
                     className={`${styles.card} ${isSelected ? styles.cardSelected : ''}`.trim()}
                     onClick={() => setSelectedId(opt.id)}
                     aria-pressed={isSelected}
+                    aria-label={upgradeOptionAriaLabel(opt)}
                   >
                     <div className={styles.cardHeaderRow}>
-                      <div>
-                        <div className={styles.seatLabel}>{opt.label}</div>
+                      <div className={styles.cardSeatBlock}>
+                        <SeatLocationSummary
+                          section={opt.section}
+                          currentRow={opt.currentRow}
+                          upgradedRow={opt.upgradedRow}
+                          seats={opt.seats}
+                        />
                         <div className={styles.upgradeMeta}>Move up {opt.moveRows} rows</div>
                       </div>
                       <div className={styles.price}>${opt.price} to upgrade</div>
@@ -130,11 +179,15 @@ export function UpgradesModal({ onClose, onConfirm }: UpgradesModalProps) {
 
           <div className={styles.rightColumn}>
             <div className={styles.previewHeader}>
-              <div>
+              <div className={styles.previewHeaderText}>
                 <div className={styles.previewTitle}>Seat preview</div>
-                <div className={styles.previewMeta}>
-                  Section {selected.section}, from row {selected.currentRow} to row {selected.upgradedRow}
-                </div>
+                <SeatLocationSummary
+                  section={selected.section}
+                  currentRow={selected.currentRow}
+                  upgradedRow={selected.upgradedRow}
+                  seats={selected.seats}
+                  compact
+                />
               </div>
               <div className={styles.legend} aria-hidden>
                 <span className={styles.legendItem}>

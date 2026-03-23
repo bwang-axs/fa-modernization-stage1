@@ -20,6 +20,9 @@ import { SellLandingWrapper } from './landing/SellLandingWrapper'
 import { SellLandingPage } from './landing/SellLandingPage'
 import { EventDetailPage } from './pages/EventDetail/EventDetailPage'
 import { TicketsUpgradesPage } from './pages/TicketsUpgradesPage'
+import { TicketsParkingPage } from './pages/TicketsParkingPage'
+import { TicketsMerchPage } from './pages/TicketsMerchPage'
+import { TicketsAddOnsPage } from './pages/TicketsAddOnsPage'
 
 function App() {
   return (
@@ -34,8 +37,15 @@ function App() {
           <Route index element={<Navigate to="tickets" replace />} />
           <Route path="tickets" element={<TicketsPage />} />
           <Route path="tickets-upgrades" element={<TicketsUpgradesPage />} />
+          <Route path="tickets-parking" element={<TicketsParkingPage />} />
+          <Route path="tickets-merch" element={<TicketsMerchPage />} />
+          <Route path="tickets-addons" element={<TicketsAddOnsPage />} />
           <Route path="tickets/:eventId" element={<EventDetailLayout />}>
             <Route index element={<EventDetailPage />} />
+            <Route path="upgrades" element={<EventDetailPage />} />
+            <Route path="parking" element={<EventDetailPage />} />
+            <Route path="merch" element={<EventDetailPage />} />
+            <Route path="addons" element={<EventDetailPage />} />
           </Route>
           <Route path="orders" element={<OrdersPage />} />
           <Route path="history" element={<HistoryPage />} />
@@ -54,6 +64,10 @@ function App() {
         <Route index element={<Navigate to="tickets" replace />} />
         <Route path="tickets/:eventId" element={<EventDetailLayout />}>
           <Route index element={<EventDetailPage />} />
+          <Route path="upgrades" element={<EventDetailPage />} />
+          <Route path="parking" element={<EventDetailPage />} />
+          <Route path="merch" element={<EventDetailPage />} />
+          <Route path="addons" element={<EventDetailPage />} />
         </Route>
         <Route element={<Layout />}>
           <Route path="tickets" element={<TicketsPage />} />
@@ -75,9 +89,16 @@ function App() {
           <Route path="events" element={<EventsV2Page />} />
           <Route path="events/:eventId" element={<EventDetailLayout />}>
             <Route index element={<EventDetailPage />} />
+            <Route path="upgrades" element={<EventDetailPage />} />
+            <Route path="parking" element={<EventDetailPage />} />
+            <Route path="merch" element={<EventDetailPage />} />
+            <Route path="addons" element={<EventDetailPage />} />
           </Route>
           <Route path="listings" element={<ListingsV2Page />} />
           <Route path="events-upgrades" element={<TicketsUpgradesPage />} />
+          <Route path="events-parking" element={<TicketsParkingPage />} />
+          <Route path="events-merch" element={<TicketsMerchPage />} />
+          <Route path="events-addons" element={<TicketsAddOnsPage />} />
           <Route path="order-history" element={<OrderHistoryV2Page />} />
           <Route path="offers" element={<OffersPage />} />
           <Route path="more" element={<MorePage />} />
@@ -93,6 +114,10 @@ function App() {
         <Route index element={<Navigate to="tickets" replace />} />
         <Route path="tickets/:eventId" element={<EventDetailLayout />}>
           <Route index element={<EventDetailPage />} />
+          <Route path="upgrades" element={<EventDetailPage />} />
+          <Route path="parking" element={<EventDetailPage />} />
+          <Route path="merch" element={<EventDetailPage />} />
+          <Route path="addons" element={<EventDetailPage />} />
         </Route>
         <Route element={<Layout />}>
           <Route path="tickets" element={<TicketsPage />} />

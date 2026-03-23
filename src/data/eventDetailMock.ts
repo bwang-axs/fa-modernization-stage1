@@ -7,6 +7,7 @@ export interface VenueInfo {
   state: string
   zip: string
   mapUrl?: string
+  policyUrl?: string
 }
 
 export interface EventInfoItem {
@@ -57,6 +58,7 @@ const venueByEventId: Record<string, VenueInfo> = {
     state: 'CA',
     zip: '90301',
     mapUrl: 'https://maps.google.com/?q=SoFi+Stadium+Inglewood+CA',
+    policyUrl: 'https://www.sofistadium.com/guest-services/parking',
   },
   '2': {
     name: 'Rose Bowl Stadium',
@@ -65,6 +67,7 @@ const venueByEventId: Record<string, VenueInfo> = {
     state: 'CA',
     zip: '91103',
     mapUrl: 'https://maps.google.com/?q=Rose+Bowl+Stadium+Pasadena+CA',
+    policyUrl: 'https://www.rosebowlstadium.com/plan-your-visit/parking',
   },
   '3': {
     name: 'SoFi Stadium',
@@ -73,6 +76,7 @@ const venueByEventId: Record<string, VenueInfo> = {
     state: 'CA',
     zip: '90301',
     mapUrl: 'https://maps.google.com/?q=SoFi+Stadium+Inglewood+CA',
+    policyUrl: 'https://www.sofistadium.com/guest-services/parking',
   },
   '4': {
     name: 'Sphere',
@@ -81,6 +85,7 @@ const venueByEventId: Record<string, VenueInfo> = {
     state: 'NV',
     zip: '89169',
     mapUrl: 'https://maps.google.com/?q=Sphere+Las+Vegas+NV',
+    policyUrl: 'https://www.thesphere.com/venue-info/parking',
   },
 }
 

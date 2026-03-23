@@ -1,4 +1,4 @@
-import { useNavigate, useParams, Navigate } from 'react-router-dom'
+import { useNavigate, useParams, useLocation, Navigate } from 'react-router-dom'
 import { useVariant } from '../../context/VariantContext'
 import { getEventById } from '../../data/ticketsMock'
 import { getEventDetailData, getRecommendedEvents } from '../../data/eventDetailMock'
@@ -11,12 +11,16 @@ import { AddOnsCarousel } from './sections/AddOnsCarousel'
 import { YouMightAlsoLikeSection } from './sections/YouMightAlsoLikeSection'
 import { EventDetailFooter } from './sections/EventDetailFooter'
 import { UpgradesModal } from './sections/UpgradesModal'
+import { ParkingModal } from './sections/ParkingModal'
+import { MerchandiseModal } from './sections/MerchandiseModal'
+import { AddOnsModal } from './sections/AddOnsModal'
 import styles from './EventDetailPage.module.css'
 
 export function EventDetailPage() {
   const { eventId } = useParams<{ eventId: string }>()
   const variant = useVariant()
   const navigate = useNavigate()
+  const { pathname } = useLocation()
   const event = eventId ? getEventById(eventId) : undefined
   const detailData = eventId ? getEventDetailData(eventId) : null
   const recommended = eventId ? getRecommendedEvents(eventId, event) : []
@@ -31,15 +35,16 @@ export function EventDetailPage() {
 
   const isCurrentShell = variant === 'current' || variant === 'currentV2'
   const containerClass = isCurrentShell ? `${styles.container} ${styles.containerTopAligned}` : styles.container
-  const showUpgradesModal = isCurrentShell
 
-  const handleDismissUpgrades = () => {
-    if (variant === 'currentV2') {
-      navigate('/currentV2/events')
-      return
-    }
-    const targetVariant = isCurrentShell ? variant : 'current'
-    navigate(`/${targetVariant}/tickets`)
+  const showUpgradesModal = pathname.endsWith('/upgrades')
+  const showParkingModal = pathname.endsWith('/parking')
+  const showMerchModal = pathname.endsWith('/merch')
+  const showAddOnsModal = pathname.endsWith('/addons')
+
+  // Close modal → return to the base event detail page
+  const handleDismissModal = () => {
+    const basePath = pathname.replace(/\/(upgrades|parking|merch|addons)$/, '')
+    navigate(basePath, { replace: true })
   }
 
   return (
@@ -55,7 +60,28 @@ export function EventDetailPage() {
       </div>
       <EventDetailFooter />
       {showUpgradesModal && (
-        <UpgradesModal onClose={handleDismissUpgrades} onConfirm={handleDismissUpgrades} />
+        <UpgradesModal onClose={handleDismissModal} onConfirm={handleDismissModal} />
+      )}
+      {showParkingModal && (
+        <ParkingModal
+          venue={detailData.venue}
+          onClose={handleDismissModal}
+          onConfirm={handleDismissModal}
+        />
+      )}
+      {showMerchModal && (
+        <MerchandiseModal
+          venue={detailData.venue}
+          onClose={handleDismissModal}
+          onConfirm={handleDismissModal}
+        />
+      )}
+      {showAddOnsModal && (
+        <AddOnsModal
+          venue={detailData.venue}
+          onClose={handleDismissModal}
+          onConfirm={handleDismissModal}
+        />
       )}
     </div>
   )

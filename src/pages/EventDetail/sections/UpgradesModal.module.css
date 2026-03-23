@@ -121,18 +121,81 @@
 
 .cardHeaderRow {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: var(--space-3);
 }
 
-.seatLabel {
+.cardSeatBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+  text-align: left;
+}
+
+/* Matches event detail “Section / Row / Seat” pattern (TicketModule) */
+.seatLocation,
+.seatLocationCompact {
+  width: 100%;
+}
+
+.seatLocationCaption {
+  display: block;
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-2);
+}
+
+.seatLocationCompact .seatLocationCaption {
+  margin-bottom: var(--space-1);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+}
+
+.seatLocationValues {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: var(--space-2) var(--space-3);
+  align-items: center;
   font-size: var(--text-sm);
-  font-weight: 600;
+  font-weight: var(--font-weight-medium);
   color: var(--color-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.seatLocationCompact .seatLocationValues {
+  font-size: var(--text-xs);
+  gap: var(--space-1) var(--space-2);
+}
+
+.seatLocationCell {
+  min-width: 0;
+  word-break: break-word;
+}
+
+.seatLocationRowMove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--space-1);
+  flex-wrap: wrap;
+}
+
+.seatLocationRowNum {
+  font-weight: var(--font-weight-semibold);
+}
+
+.seatLocationArrow {
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-normal);
 }
 
 .price {
+  flex-shrink: 0;
   font-size: var(--text-sm);
   font-weight: 600;
   color: var(--color-primary);
@@ -177,15 +240,17 @@
   gap: var(--space-3);
 }
 
+.previewHeaderText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
 .previewTitle {
   font-size: var(--text-sm);
   font-weight: 600;
   color: var(--color-text-primary);
-}
-
-.previewMeta {
-  font-size: var(--text-xs);
-  color: var(--color-text-secondary);
 }
 
 .legend {
